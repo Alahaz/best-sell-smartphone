@@ -17,11 +17,12 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
+        this.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val tvNama:TextView = findViewById(R.id.detail_tv_nama)
-        val tvDetail:TextView = findViewById(R.id.detail_tv_detail)
-        val getGambar: Int = intent.getIntExtra(EXTRA_IMAGE,0)
-        val imgPhone:ImageView = findViewById(R.id.detail_img_phone)
+        val tvNama: TextView = findViewById(R.id.detail_tv_nama)
+        val tvDetail: TextView = findViewById(R.id.detail_tv_detail)
+        val getGambar: Int = intent.getIntExtra(EXTRA_IMAGE, 0)
+        val imgPhone: ImageView = findViewById(R.id.detail_img_phone)
 
         tvNama.text = intent.getStringExtra(EXTRA_NAMA)
         tvDetail.text = intent.getStringExtra(EXTRA_DETAIL)

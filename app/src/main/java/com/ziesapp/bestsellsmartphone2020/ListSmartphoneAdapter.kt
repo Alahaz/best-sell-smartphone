@@ -13,12 +13,12 @@ class ListSmartphoneAdapter(private val listSmartphone: ArrayList<Smartphone>) :
     RecyclerView.Adapter<ListSmartphoneAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallBack: OnItemClickCallBack
 
-    fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack){
+    fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack) {
         this.onItemClickCallBack = onItemClickCallBack
     }
 
     interface OnItemClickCallBack {
-        fun onItemClicked(data:Smartphone)
+        fun onItemClicked(data: Smartphone)
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -46,7 +46,8 @@ class ListSmartphoneAdapter(private val listSmartphone: ArrayList<Smartphone>) :
             .into(holder.ivFoto)
         holder.tvNama.text = smartphone.nama
         holder.tvDetail.text = smartphone.detail
-        holder.itemView.setOnClickListener{ onItemClickCallBack.onItemClicked(listSmartphone[holder.adapterPosition])
+        holder.itemView.setOnClickListener {
+            onItemClickCallBack.onItemClicked(listSmartphone[holder.adapterPosition])
         }
     }
 
