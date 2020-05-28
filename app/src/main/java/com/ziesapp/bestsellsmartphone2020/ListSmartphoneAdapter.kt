@@ -11,7 +11,6 @@ import com.bumptech.glide.request.RequestOptions
 
 class ListSmartphoneAdapter(private val listSmartphone: ArrayList<Smartphone>) :
     RecyclerView.Adapter<ListSmartphoneAdapter.ListViewHolder>() {
-
     private lateinit var onItemClickCallBack: OnItemClickCallBack
 
     fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack){
@@ -49,7 +48,6 @@ class ListSmartphoneAdapter(private val listSmartphone: ArrayList<Smartphone>) :
         holder.tvDetail.text = smartphone.detail
         holder.itemView.setOnClickListener{ onItemClickCallBack.onItemClicked(listSmartphone[holder.adapterPosition])
         }
-
     }
 
 }

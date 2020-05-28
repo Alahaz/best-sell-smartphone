@@ -12,29 +12,23 @@ import androidx.recyclerview.widget.RecyclerView
 class MainActivity : AppCompatActivity() {
     private lateinit var rvSmartphone: RecyclerView
     private var list: ArrayList<Smartphone> = arrayListOf()
+    private val listSmartphoneAdapter = ListSmartphoneAdapter(list)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        rvSmartphone = findViewById(R.id.rv_utama)
-        rvSmartphone.setHasFixedSize(true)
-
-        list.addAll(ObjekSmartphone.listData)
         showRecycler()
+        clickAction()
     }
 
     //recyclerView
     private fun showRecycler() {
+        rvSmartphone = findViewById(R.id.rv_utama)
+        rvSmartphone.setHasFixedSize(true)
+        list.addAll(ObjekSmartphone.listData)
         rvSmartphone.layoutManager = LinearLayoutManager(this)
-        val listSmartphoneAdapter = ListSmartphoneAdapter(list)
         rvSmartphone.adapter = listSmartphoneAdapter
-
-        listSmartphoneAdapter.setOnItemClickCallBack(object : ListSmartphoneAdapter.OnItemClickCallBack{
-            override fun onItemClicked(data: Smartphone) {
-                selected(data)
-            }
-        })
     }
 
     //about-menu
@@ -49,9 +43,24 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    //detail
-    private fun selected(smartphone: Smartphone){
-        Toast.makeText(this,"Kamu Memilih "+smartphone.nama,Toast.LENGTH_SHORT).show()
+    private fun clickAction() {
+        listSmartphoneAdapter.setOnItemClickCallBack(object :
+            ListSmartphoneAdapter.OnItemClickCallBack {
+            override fun onItemClicked(data: Smartphone) {
+                selected(data)
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                    .apply {
+                        putExtra(DetailActivity.EXTRA_NAMA, data.nama)
+                        putExtra(DetailActivity.EXTRA_DETAIL, data.detail)
+                        putExtra(DetailActivity.EXTRA_IMAGE, data.foto)
+                    }
+                startActivity(intent)
+            }
+        })
     }
 
+    //detail
+    private fun selected(smartphone: Smartphone) {
+        Toast.makeText(this, "Kamu Memilih " + smartphone.nama, Toast.LENGTH_SHORT).show()
+    }
 }
