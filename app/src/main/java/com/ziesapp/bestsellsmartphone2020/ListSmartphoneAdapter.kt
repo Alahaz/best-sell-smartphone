@@ -12,6 +12,16 @@ import com.bumptech.glide.request.RequestOptions
 class ListSmartphoneAdapter(private val listSmartphone: ArrayList<Smartphone>) :
     RecyclerView.Adapter<ListSmartphoneAdapter.ListViewHolder>() {
 
+    private lateinit var onItemClickCallBack: OnItemClickCallBack
+
+    fun setOnItemClickCallBack(onItemClickCallBack: OnItemClickCallBack){
+        this.onItemClickCallBack = onItemClickCallBack
+    }
+
+    interface OnItemClickCallBack {
+        fun onItemClicked(data:Smartphone)
+    }
+
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvNama: TextView = itemView.findViewById(R.id.tv_nama)
         var tvDetail: TextView = itemView.findViewById(R.id.tv_detail)
@@ -37,6 +47,8 @@ class ListSmartphoneAdapter(private val listSmartphone: ArrayList<Smartphone>) :
             .into(holder.ivFoto)
         holder.tvNama.text = smartphone.nama
         holder.tvDetail.text = smartphone.detail
+        holder.itemView.setOnClickListener{ onItemClickCallBack.onItemClicked(listSmartphone[holder.adapterPosition])
+        }
 
     }
 

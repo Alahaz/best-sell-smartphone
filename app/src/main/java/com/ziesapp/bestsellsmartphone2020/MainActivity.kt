@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -26,10 +27,17 @@ class MainActivity : AppCompatActivity() {
     //recyclerView
     private fun showRecycler() {
         rvSmartphone.layoutManager = LinearLayoutManager(this)
-        rvSmartphone.adapter = ListSmartphoneAdapter(list)
+        val listSmartphoneAdapter = ListSmartphoneAdapter(list)
+        rvSmartphone.adapter = listSmartphoneAdapter
+
+        listSmartphoneAdapter.setOnItemClickCallBack(object : ListSmartphoneAdapter.OnItemClickCallBack{
+            override fun onItemClicked(data: Smartphone) {
+                selected(data)
+            }
+        })
     }
 
-    //menu
+    //about-menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
@@ -40,4 +48,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         return super.onOptionsItemSelected(item)
     }
+
+    //detail
+    private fun selected(smartphone: Smartphone){
+        Toast.makeText(this,"Kamu Memilih "+smartphone.nama,Toast.LENGTH_SHORT).show()
+    }
+
 }
