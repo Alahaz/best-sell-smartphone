@@ -3,4 +3,6 @@
     <string name="nama_hp">Nama Smartphone</string>
     <string name="detail_hp">Detail Smartphone</string>
     <string name="img_info">gambar smartphone</string>
+    <string name="nama_profil">Alief Ahmad Azies</string>
+    <string name="email_profil">alief.ahmadazies@gmail.com</string>
 </resources>

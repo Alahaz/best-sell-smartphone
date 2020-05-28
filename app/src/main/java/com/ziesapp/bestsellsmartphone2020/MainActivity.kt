@@ -1,7 +1,10 @@
 package com.ziesapp.bestsellsmartphone2020
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -20,10 +23,21 @@ class MainActivity : AppCompatActivity() {
         showRecycler()
     }
 
+    //recyclerView
     private fun showRecycler() {
         rvSmartphone.layoutManager = LinearLayoutManager(this)
         rvSmartphone.adapter = ListSmartphoneAdapter(list)
-
     }
 
+    //menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
+        return super.onOptionsItemSelected(item)
+    }
 }
